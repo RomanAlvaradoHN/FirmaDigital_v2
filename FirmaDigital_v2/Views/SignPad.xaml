@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FirmaDigital_v2.Views.SignPad"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             Title="SignPad">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Limpiar" IconImageSource="restart_ico" Clicked="OnBtnLimpiarClicked"/>
+    </ContentPage.ToolbarItems>
+
+
+    <StackLayout Spacing="5" Padding="10">
+        
+        <Frame VerticalOptions="FillAndExpand" Padding="0">
+            <toolkit:DrawingView x:Name="signPad"
+            DrawingLineCompleted="OnPadSignedEvent"
+            BackgroundColor="white"
+            IsMultiLineModeEnabled="True"
+            LineColor="BlueViolet"
+            LineWidth="5"/>
+        </Frame>
+
+        <Frame CornerRadius="10" Padding="5">
+            <StackLayout>
+                <Label Text="Nombre" />
+                <Entry x:Name="txtNombre" VerticalOptions="FillAndExpand" Keyboard="Text" TextColor="BlueViolet"/>
+            </StackLayout>
+        </Frame>
+
+
+        <Frame CornerRadius="10" Padding="5">
+            <StackLayout>
+                <Label Text="Descripcion" />
+                <Entry x:Name="txtDescripcion" VerticalOptions="FillAndExpand" Keyboard="Text" TextColor="BlueViolet"/>
+            </StackLayout>
+        </Frame>
+
+
+        <StackLayout Orientation="Horizontal" Spacing="5">
+            <Button x:Name="btnAgregar"
+                    Text="Guardar"
+                    ImageSource="guardar_ico.png"
+                    Clicked="OnBtnGuardarClicked"
+                    HorizontalOptions="FillAndExpand"/>
+
+            <Button x:Name="btnVerLista"
+                    Text="Lista"
+                    ImageSource="lista_ico.png"
+                    Clicked="OnBtnListaClicked"
+                    HorizontalOptions="FillAndExpand"/>
+        </StackLayout>
+
+    </StackLayout>
+    
+    
+</ContentPage>

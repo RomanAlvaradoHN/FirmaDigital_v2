@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FirmaDigital_v2.Views.FirmaView"
+             Title="FirmaView">
+    
+    
+    
+    <VerticalStackLayout>
+        <Image x:Name="imgView"
+            Aspect="AspectFill"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand"/>
+    </VerticalStackLayout>
+    
+    
+    
+</ContentPage>
