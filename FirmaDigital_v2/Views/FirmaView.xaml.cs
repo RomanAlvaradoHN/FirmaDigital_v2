@@ -17,6 +17,6 @@ public partial class FirmaView : ContentPage
     protected override void OnAppearing() {
         base.OnAppearing();
 
-        imgView.Source = ImageSource.FromFile(firma.FirmaImagePath);
+        imgView.Source = ImageSource.FromFile(firma.FirmaFilePath);
     }
 }

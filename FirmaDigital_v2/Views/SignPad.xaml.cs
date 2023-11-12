@@ -6,8 +6,6 @@ namespace FirmaDigital_v2.Views;
 public partial class SignPad : ContentPage
 {
     private byte[] firmaImageArray;
-    private string firmaImagePath;
-
 
 
     public SignPad(){
@@ -34,24 +32,23 @@ public partial class SignPad : ContentPage
     public async void OnBtnGuardarClicked(object sender, EventArgs args) {
         try {
 
-            //Guardado del archivo de imagen en fisico.
-            firmaImagePath = Path.Combine(App.firmasDirectory, txtNombre.Text);
-            using (FileStream firmaFile = File.OpenWrite(firmaImagePath)) {
-                Stream st = new MemoryStream(firmaImageArray);
-                await st.CopyToAsync(firmaFile);
-            }
-
             //Instanciamos un nuevo objeto firma con los datos necesarios
             Firmas firma = new Firmas(
                 firmaImageArray,
-                firmaImagePath,
                 txtNombre.Text,
                 txtDescripcion.Text
             );
 
-            //Si el objeto firma devuelve datos invalidos, lanzamos un alert
+            //Guardamos en SQLite y almacenamiento. Si el objeto firma devuelve datos invalidos, lanzamos un alert
             if (!firma.GetDatosInvalidos().Any()) {
                 await App.db.Insert(firma);
+                
+                string path = Path.Combine(App.firmasDirectory, txtNombre.Text);
+                using (FileStream firmaFile = File.OpenWrite(path)) {
+                    Stream st = new MemoryStream(firmaImageArray);
+                    await st.CopyToAsync(firmaFile);
+                }
+
                 LimpiarCampos();
                 await DisplayAlert("Success", "Datos guardados", "Aceptar");
 
@@ -62,6 +59,7 @@ public partial class SignPad : ContentPage
 
         } catch (Exception ex) {
             await DisplayAlert("Error:", ex.Message, "Aceptar");
+            Console.WriteLine(ex.StackTrace);
         }
     }
 

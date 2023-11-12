@@ -8,17 +8,16 @@ using System.Threading.Tasks;
 namespace FirmaDigital_v2.Models {
     public class Firmas {
         private List<string> invalidData = new List<string>();
-        private byte[] firmaImageArray;
-        private string firmaImagePath;
+        private byte[] firma;
+        private string firmaFilePath;
         private string nombre;
         private string descripcion;
 
 
         public Firmas() { }
 
-        public Firmas(byte[] firmaImageArray, string firmaImagePath, string nombre, string descripcion) {
-            this.FirmaImageArray = firmaImageArray;
-            this.FirmaImagePath = firmaImagePath;
+        public Firmas(byte[] firma, string nombre, string descripcion) {
+            this.Firma = firma;
             this.Nombre = nombre;
             this.Descripcion = descripcion;
         }
@@ -36,31 +35,24 @@ namespace FirmaDigital_v2.Models {
 
 
 
-        [Column("FirmaImageArray")]
-        public byte[] FirmaImageArray {
-            get { return this.firmaImageArray; }
+        [Column("Firma")]
+        public byte[] Firma {
+            get { return this.firma; }
 
             set {
                 if (value != null && value.Length > 0) {
-                    this.firmaImageArray = value;
+                    this.firma = value;
                 } else {
-                    this.invalidData.Add("FirmaImageArray");
+                    this.invalidData.Add("Firma");
                 }
             }
         }
 
 
-        [Column("FirmaImagePath")]
-        public string FirmaImagePath {
-            get { return this.firmaImagePath; }
-
-            set {
-                if (!string.IsNullOrEmpty(value)) {
-                    this.firmaImagePath = value;
-                } else {
-                    this.invalidData.Add("FirmaImagePath");
-                }
-            }
+        [Column("FirmaFilePath")]
+        public string FirmaFilePath {
+            get { return this.firmaFilePath; }
+            set {this.firmaFilePath = Path.Combine(App.firmasDirectory, value); }
         }
 
 
@@ -72,6 +64,7 @@ namespace FirmaDigital_v2.Models {
             set {
                 if (!string.IsNullOrEmpty(value)) {
                     this.nombre = value;
+                    FirmaFilePath = value;
                 } else {
                     this.invalidData.Add("Nombre");
                 }
