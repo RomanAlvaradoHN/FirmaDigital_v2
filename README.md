@@ -1,6 +1,4 @@
-=======================================
-GRUPO# 3
-Aplicacion: FirmaDigital_v2
+# GRUPO# 3 - Aplicacion: FirmaDigital_v2
 =======================================
 1. Jennifer Paola Castillo Carranza
 2. Andrea Gissell Castro Euceda
