@@ -1,4 +1,4 @@
-# GRUPO# 3 - FirmaDigital_v2
+# GRUPO# 3
 =======================================
 1. Jennifer Paola Castillo Carranza
 2. Andrea Gissell Castro Euceda
